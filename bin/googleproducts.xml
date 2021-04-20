@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+    <channel>
+        <title>CLOTH</title>
+        <description>expressCart</description>
+        <link>http://localhost:1111</link>
+        <item>
+            <g:title>Tishirt</g:title>
+            <g:id>605db7e03256891938d214b1</g:id>
+            <g:link>http://localhost:1111/product/Permalink</g:link>
+            <g:description>&lt;p&gt; &lt;/p&gt;&lt;p&gt;description d&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description d&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description d&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description d&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description d&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</g:description>
+            <g:price>19.00 USD</g:price>
+            <g:image_link>http://localhost:1111/uploads/placeholder.png</g:image_link>
+            <g:availability>in stock</g:availability>
+            <g:gtin>1365633</g:gtin>
+        </item>
+        <item>
+            <g:title>tishee</g:title>
+            <g:id>605dbe843256891938d214b2</g:id>
+            <g:link>http://localhost:1111/product/oii</g:link>
+            <g:description>&lt;p&gt;    &lt;/p&gt;&lt;p&gt;description&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description&lt;br /&gt;&lt;/p&gt;&lt;p&gt;description&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt;&lt;/p&gt;</g:description>
+            <g:price>10.00 USD</g:price>
+            <g:image_link>http://localhost:1111/uploads/placeholder.png</g:image_link>
+            <g:availability>in stock</g:availability>
+            <g:gtin>9698669</g:gtin>
+        </item>
+    </channel>
+</rss>
