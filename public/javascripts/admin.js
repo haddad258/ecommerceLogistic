@@ -901,3 +901,92 @@ function validationErrors(errors){
     });
     return errorMessage;
 }
+
+
+$(document).on('click', '#SendOrder',  function(e){
+    e.preventDefault();
+    console.log("SendOrder")
+    //alert("Your values are :"+JSON.stringify($(this).data("value")) );
+
+    id = $(this).data("value");
+    console.log( typeof id)
+    console.log(id)
+     
+    /* const db = req.app.db;
+    //const db = req.app.db;
+    const order = await db.orders.findOne({ _id: getId(id) });
+    console.log(order) */
+    
+
+
+    /* var settings = {
+        "url": `/admin/order/view/${id}`,
+        "method": "GET",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+      }); */
+
+     $.ajax({
+        type: 'GET',
+        url: `/admin/order/view1/${id}`,
+        //dataType: 'json',
+        processData: false,
+        //data:  id,
+        /* success: function(resp){
+            console.log(resp);
+        } */
+    }).done(function(result){
+        console.log(`/admin/order/view/${id}`)
+        console.log(result)
+        showNotification('New order was sent', 'success');
+        //showNotification(result.message, 'success');
+        window.location = `/admin/orders`;
+      
+       /* $.ajax({
+            method: 'POST',
+            url: 'logisticUrl',
+            data: { result : result.result
+            }
+        })
+        .done(function(result){
+            showNotification(result.message, 'success');
+            //window.location = `/admin/order/view/${result.orderId}`;
+        })
+        .fail(function(msg){
+            showNotification(msg.responseJSON.message, 'danger');
+        }); */ 
+
+    })
+    .fail(function(msg){
+        showNotification('Order not sent', 'danger');
+    }); 
+
+        /* $.ajax({
+            method: 'POST',
+            url: '/admin/order/create',
+            data: {
+                //orderStatus: $('#orderStatus').val(),
+                orderStatus: "Pending",
+                email: $('#customerEmail').val(),
+                firstName: $('#orderFirstName').val(),
+                lastName: $('#orderLastName').val(),
+                address1: $('#orderAddress1').val(),
+                address2: $('#orderAddress2').val(),
+                country: $('#orderCountry').val(),
+                state: $('#orderState').val(),
+                postcode: $('#orderPostcode').val(),
+                phone: $('#orderPhone').val(),
+                orderComment: $('#orderComment').val()
+            }
+        })
+        .done(function(result){
+            showNotification(result.message, 'success');
+            //window.location = `/admin/order/view/${result.orderId}`;
+        })
+        .fail(function(msg){
+            showNotification(msg.responseJSON.message, 'danger');
+        }); */
+});

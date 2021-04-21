@@ -496,6 +496,11 @@ $(document).ready(function (){
         $('#confirmModal').modal('show');
         $('#buttonConfirm').attr('data-func', 'emptyCart');
     });
+    $(document).on('click', '#empty-cartPayement', function(e){
+        console.log("click")
+        $('#confirmModalPayement').modal('show');
+        $('#buttonConfirm').attr('data-func', 'emptyCart');
+    });
 
     $(document).on('click', '#buttonConfirm', function(e){
         // Get the function and run it
@@ -503,6 +508,15 @@ $(document).ready(function (){
         window[func]();
         $('#confirmModal').modal('hide');
     });
+    
+    $(document).on('click', '#buttonConfirmPayement', function(e){
+        console.log("click buttonConfirmPayement")
+        // Get the function and run it
+        var func = $(e.target).attr('data-func');
+        window[func]();
+        $('#confirmModalPayement').modal('hide');
+    });
+
 
     $('.qty-btn-minus').on('click', function(){
         var number = parseInt($('#product_quantity').val()) - 1;
@@ -797,3 +811,35 @@ function emptyCart(){
         showNotification(msg.message, 'success', true);
     });
 }
+
+$(document).on('click', '#orderCreate', function(e){
+    e.preventDefault();
+    console.log("orderCreate")
+    if($('#createOrderForm').validator('validate').has('.has-error').length === 0){
+        $.ajax({
+            method: 'POST',
+            url: '/admin/order/create',
+            data: {
+                //orderStatus: $('#orderStatus').val(),
+                orderStatus: "Pending",
+                email: $('#customerEmail').val(),
+                firstName: $('#orderFirstName').val(),
+                lastName: $('#orderLastName').val(),
+                address1: $('#orderAddress1').val(),
+                address2: $('#orderAddress2').val(),
+                country: $('#orderCountry').val(),
+                state: $('#orderState').val(),
+                postcode: $('#orderPostcode').val(),
+                phone: $('#orderPhone').val(),
+                orderComment: $('#orderComment').val()
+            }
+        })
+        .done(function(result){
+            showNotification(result.message, 'success');
+            //window.location = `/admin/order/view/${result.orderId}`;
+        })
+        .fail(function(msg){
+            showNotification(msg.responseJSON.message, 'danger');
+        });
+    }
+});

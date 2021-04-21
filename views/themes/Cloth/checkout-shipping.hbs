@@ -5,11 +5,14 @@
             <li class="breadcrumb-item" aria-current="page"><a href="/checkout/information">Information</a></li>
             <li class="breadcrumb-item active" aria-current="page"><a href="/checkout/shipping">Shipping</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="/checkout/payment">Payment</a></li>
+            {{!-- <li class="breadcrumb-item" aria-current="page"><a href="/checkout/paymentWenDelivred">Payment Wen Delivred </a></li> --}}
         </ol>
     </nav>
     <div class="row">
         <div class="col-12 col-md-5 bottom-pad-15">
+            <a href="/checkout/information" class="btn btn-primary " style="margin-top: 10px;">{{ @root.__ "Return to information" }}</a>
             <div class="card top-marg-15 bottom-marg-15">
+                
                 <div class="card-body">
                     <h5 class="card-title">{{ @root.__ "Shipping options" }}</h5>
                     {{#unless @root.session.shippingOptions}}
@@ -23,8 +26,12 @@
                     {{/unless}}
                 </div>
             </div>
-            <a href="/checkout/information" class="btn btn-primary float-left">{{ @root.__ "Return to information" }}</a>
-            <a href="/checkout/payment" class="btn btn-primary float-right">{{ @root.__ "Proceed to payment" }}</a>
+            
+            <a href="/checkout/payment" class="btn btn-primary float-right">{{ @root.__ "online payment" }}</a>
+            {{!-- <a href="/checkout/paymentWenDelivred" class="btn btn-primary float" >{{ @root.__ "Payment when dilevred" }}</a>  --}}
+            <button id="orderCreate" class="btn btn-primary float">{{ @root.__ "Payment when dilevred" }}</button>
+            
+            
         </div>
         <div id="cart" class="col-md-7 d-none d-sm-block">
             {{> (getTheme 'cart')}}

@@ -87,10 +87,14 @@ router.get('/admin/orders/bystatus/:orderstatus', restrict, async (req, res, nex
 
 // render the editor
 router.get('/admin/order/view/:id', restrict, async (req, res) => {
+    
     const db = req.app.db;
+    //console.log(db); 
     const order = await db.orders.findOne({ _id: getId(req.params.id) });
-
-    res.render('order', {
+    /* res.status(200).json({
+        order
+    }); */
+     res.render('order', {
         title: 'View order',
         result: order,
         config: req.app.config,
@@ -100,8 +104,38 @@ router.get('/admin/order/view/:id', restrict, async (req, res) => {
         editor: true,
         admin: true,
         helpers: req.handlebars.helpers
-    });
+    }); 
 });
+
+
+
+  router.get('/admin/order/view1/:id', restrict, async (req, res) => {
+    const db = req.app.db;
+
+    await db.orders.findOneAndUpdate({_id: getId(req.params.id)}, {$set:  {'status': 1 }}, {new: true, useFindAndModify: false}).then((result) => {
+        /* res.status(200).json({
+            result:result.value
+        }); */
+        if(req.apiAuthenticated){
+            res.status(200).json({
+                result:result.value
+            });
+            return;
+        }
+
+        // redirect home
+        req.session.message = 'Order successfully sent';
+        req.session.messageType = 'success';
+         res.redirect('/admin/orders'); 
+    })
+    .catch((err) => {
+        res.json({error :err}) ; 
+    })
+
+});  
+
+
+
 
 // render the editor
 router.get('/admin/order/create', restrict, async (req, res) => {
@@ -118,6 +152,12 @@ router.get('/admin/order/create', restrict, async (req, res) => {
     });
 });
 
+
+/* router. */
+
+
+
+
 router.post('/admin/order/create', async (req, res, next) => {
     const db = req.app.db;
     const config = req.app.config;
@@ -130,6 +170,7 @@ router.post('/admin/order/create', async (req, res, next) => {
     }
 
     const orderDoc = {
+        status:0,
         orderPaymentId: getId(),
         orderPaymentGateway: 'Instore',
         orderPaymentMessage: 'Your payment was successfully completed',

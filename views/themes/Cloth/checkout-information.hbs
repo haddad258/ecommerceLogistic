@@ -6,9 +6,11 @@
             {{#if @root.session.customerPresent}}
             <li class="breadcrumb-item" aria-current="page"><a href="/checkout/shipping">Shipping</a></li>
             <li class="breadcrumb-item" aria-current="page"><a href="/checkout/payment">Payment</a></li>
+            {{!-- <li class="breadcrumb-item" aria-current="page"><a href="/checkout/paymentWenDelivred">Payment Wen Delivred </a></li> --}}
             {{else}}
             <li class="breadcrumb-item text-muted" aria-current="page">Shipping</li>
             <li class="breadcrumb-item text-muted" aria-current="page">Payment</li>
+            {{!-- <li class="breadcrumb-item" aria-current="page"><a href="/checkout/paymentWenDelivred">Payment Wen Delivred </a></li> --}}
             {{/if}}
         </ol>
     </nav>
