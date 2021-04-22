@@ -905,12 +905,12 @@ function validationErrors(errors){
 
 $(document).on('click', '#SendOrder',  function(e){
     e.preventDefault();
-    console.log("SendOrder")
+    //console.log("SendOrder")
     //alert("Your values are :"+JSON.stringify($(this).data("value")) );
 
     id = $(this).data("value");
-    console.log( typeof id)
-    console.log(id)
+    //console.log( typeof id)
+    //console.log(id)
      
     /* const db = req.app.db;
     //const db = req.app.db;
@@ -929,6 +929,17 @@ $(document).on('click', '#SendOrder',  function(e){
         console.log(response);
       }); */
 
+
+
+    
+   /*  .done(function(result){
+        showNotification(result.message, 'success');
+        //window.location = `/admin/order/view/${result.orderId}`;
+    })
+    .fail(function(msg){
+        showNotification(msg.responseJSON.message, 'danger');
+    }); */
+
      $.ajax({
         type: 'GET',
         url: `/admin/order/view1/${id}`,
@@ -938,26 +949,31 @@ $(document).on('click', '#SendOrder',  function(e){
         /* success: function(resp){
             console.log(resp);
         } */
-    }).done(function(result){
+    }).done( async function(result){
         console.log(`/admin/order/view/${id}`)
-        console.log(result)
+        //console.log(result)
         showNotification('New order was sent', 'success');
         //showNotification(result.message, 'success');
-        window.location = `/admin/orders`;
-      
-       /* $.ajax({
+       
+        //result.redirect('/admin/orders'); 
+
+
+        $.ajax({
             method: 'POST',
-            url: 'logisticUrl',
-            data: { result : result.result
-            }
+            url: 'http://localhost:3000/logistc',
+            data: JSON.stringify(result.result),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
         })
-        .done(function(result){
-            showNotification(result.message, 'success');
-            //window.location = `/admin/order/view/${result.orderId}`;
+        window.location = `/admin/orders`;
+        /* .done(function(result){
+            console.log(result)
+            window.location = `/admin/orders`;
         })
         .fail(function(msg){
-            showNotification(msg.responseJSON.message, 'danger');
-        }); */ 
+            console.log(msg)
+           
+        });   */
 
     })
     .fail(function(msg){

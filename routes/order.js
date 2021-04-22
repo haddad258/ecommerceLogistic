@@ -112,21 +112,21 @@ router.get('/admin/order/view/:id', restrict, async (req, res) => {
   router.get('/admin/order/view1/:id', restrict, async (req, res) => {
     const db = req.app.db;
 
-    await db.orders.findOneAndUpdate({_id: getId(req.params.id)}, {$set:  {'status': 1 }}, {new: true, useFindAndModify: false}).then((result) => {
+    await db.orders.findOneAndUpdate({_id: getId(req.params.id)}, {$set:  {'status': 1 }}, {new: true, useFindAndModify: false}).then(async (result) => {
         /* res.status(200).json({
             result:result.value
         }); */
-        if(req.apiAuthenticated){
-            res.status(200).json({
+       /*  if(req.apiAuthenticated){ */
+         await   res.status(200).json({
                 result:result.value
             });
-            return;
-        }
+          /*   return;
+        } */
 
         // redirect home
         req.session.message = 'Order successfully sent';
         req.session.messageType = 'success';
-         res.redirect('/admin/orders'); 
+        res.redirect('/admin/orders'); 
     })
     .catch((err) => {
         res.json({error :err}) ; 
